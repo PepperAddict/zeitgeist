@@ -1,70 +1,52 @@
-# Getting Started with Create React App
+# Welcome to GraphQL Chat
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Hello! If you're reading this, you're probably an awesome member of the team! 
 
-## Available Scripts
+This app was created with React and Node with the focus on GraphQL/Apollo for the front and back-end. Which end is clearly within their respective folder. Such as the front-end (ReactJS) is in the `frontend` folder where as the back-end (Node/ExpressJs) is in the `backend` folder. 
 
-In the project directory, you can run:
+## Table of Contents 
+* [GraphQL](#GraphQL)
+* [The Presentation](#The-presentation)
+* [See it in Action](#See-it-in-action)
+* [What the App Does](#What-the-App-Does)
+* [Some things to note](#Notes)
+* [Problems](#Problems)
 
-### `yarn start`
+## GraphQL 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+* Backend - The GraphQL setup is a middleware so you'll find it in `backend>middleware>graphql`. All the setup was created within that folder. There are two different schema folders that achieve the same purpose but was created to show the different ways to write it. 
+* Frontend - The GraphQL queries were saved in `frontend>helpers>graphql.js`
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
+## The presentation 
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+A presentation was created to go with this project, to access it, click [here](https://docs.google.com/presentation/d/1vaq3VCaOYX4slT3khjKx212wMpilsHATN5NNvB6ynXA/edit?usp=sharing)
 
-### `yarn build`
+## See it in action
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+During the presentation I should have a tunnelled server running that others could access, but if you would like to run it yourself, there are a couple of steps you need to do: 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+* install all the packages `npm i` or `yarn`
+* Build the app `npm run build` or `yarn run build`
+* start the app `npm start` or `yarn start`
+* You should see the server running at `http://localhost:8080` and the **GraphQL** playground running at `http://localhost:8080/graphql`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## What the App Does
 
-### `yarn eject`
+* Choose a nickname
+* Toggle between chat or upload for the type of message you want shared with others
+* Chat will let you send a message
+* Upload will let you send an image. Dragging an image over also works. 
+* Nicknames that match the message's name are deletable.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+## Notes
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+* If you are running this app locally, the "database" is [neDB](https://github.com/louischatriot/nedb). You can find the file `database.db` of any data that was stored on your end. This file is not shared. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+* Images uploaded from the front-end are stored in `public>images` and are not shared... But will be stored on my local machine.... so.... yeah....
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Problems 
 
-## Learn More
+* The upload feature is executed with a standard POST request handled by multer rather than GraphQL because [apollo-upload-client](https://github.com/jaydenseric/apollo-upload-client) doesn't work alongside [Subscription link](https://www.apollographql.com/docs/react/data/subscriptions/#4-provide-the-link-chain-to-apollo-client) and I was too lazy to research a better client-side graphql upload tool.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+* This app had little to no thought when it comes to security, UI, responsiveness, and other stuff...
