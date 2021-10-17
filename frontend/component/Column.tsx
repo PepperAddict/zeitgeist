@@ -22,7 +22,7 @@ function Messages(props) {
 
     return (<div className="chat-container">
         {props.messages.sort((a, b) => b._id - a._id).map(({ _id, name, message, column }) => {
-            if (column === props.theColumn) {
+            if (column.toLowerCase() === props.theColumn.toLowerCase()) {
                 return <Message {...props} name={name} _id={_id} message={message} key={_id}/>
             } 
         })}

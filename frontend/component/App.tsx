@@ -4,7 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import '../styles/app.styl'
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-
+import BG from './BG'
 
 //redux portion
 import store from '../redux/store'
@@ -37,6 +37,8 @@ const App = () => {
   return (
     <Provider store={store}>
       <ApolloProvider client={client}>
+<BG />
+
         <Router>
           
           <Route exact path="/">
