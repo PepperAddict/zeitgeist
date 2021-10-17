@@ -7,7 +7,6 @@ import '../styles/app.styl'
 export default function Welcome () {
 
     const [name, inputName] = useState(null);
-    const [roomt, setRoom] = useState(null);
     const dispatch = useDispatch()
     const user = useSelector((state: RootStateOrAny) => state.user.value)
 
@@ -25,8 +24,7 @@ export default function Welcome () {
           <h1>Enter your room number and a nickname</h1>
             <form onSubmit={enterUsername}>
                    <input placeholder="Enter a nickname" pattern="[A-Za-z]{3,10}" title="Letters only 3-10 characters" onChange={(e) => inputName(e.target.value)} /> 
-                   <input placeholder="Enter a room code" onChange={(e) => setRoom(e.target.value)} />
-                   <button type="submit">Enter</button>
+                   <button type="submit">Enter room</button>
             </form>
         </div>
     )

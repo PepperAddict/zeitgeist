@@ -2,7 +2,6 @@ import { useMutation, useSubscription } from '@apollo/client';
 import React, { useState } from 'react';
 import { POST_MESSAGE, WATCH_MESSAGE, REMOVE_MESSAGE } from '../helpers/graphql';
 import { RootStateOrAny, useSelector } from 'react-redux';
-//this is for each of the messages
 
 //This is for deleting a message if it belongs to the user
 function DeleteMessage({ id }) {
@@ -13,13 +12,19 @@ function DeleteMessage({ id }) {
     return <span onClick={() => initiateRemoval()}>✖</span>
 }
 
-function Messages({ messages, user, theColumn }) {
-    return (<div className="chat-container">
-        {messages.sort((a, b) => b._id - a._id).map(({ _id, name, message, column }, key) => {
-            if (column === theColumn) {
-                return <p className="chat" key={_id}> <strong>{name}: </strong> {message} {(user === name) && <DeleteMessage id={_id} />}  </p>
-            }
+function Message ( props) {
+    const {message, user, name, _id} = props;
+    const [hide, setHide] = useState(true);
+    return <p className="chat" key={_id}> <strong> {message}</strong> {(user === name) && <DeleteMessage id={_id} />}  </p>
+}
 
+function Messages(props) {
+
+    return (<div className="chat-container">
+        {props.messages.sort((a, b) => b._id - a._id).map(({ _id, name, message, column }) => {
+            if (column === props.theColumn) {
+                return <Message {...props} name={name} _id={_id} message={message} key={_id}/>
+            } 
         })}
     </div>
     )
@@ -59,14 +64,11 @@ export default function Column({ column }) {
             <form onSubmit={(e) => submitForm(e)}>
 
                 <label>
-
                     <input value={message} onChange={(e) => setMessage(e.target.value)} />
                 </label>
 
                 <button type="submit">Add</button>
             </form>
-
-
 
         </div>
     )
