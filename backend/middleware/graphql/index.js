@@ -2,11 +2,6 @@
 const { GraphQLSchema, GraphQLObjectType } = require('graphql');
 const {makeExecutableSchema} = require('graphql-tools');
 
-//these two are for the SDL way
-const {typeDefs} = require('./schema_one/types');
-const {resolvers} = require('./schema_one/resolver')
-//create schem from typedefs and resolvers
-const schema = makeExecutableSchema({typeDefs, resolvers});
 
 //below is the GraphQL Object way
 const postMessage = require('./schema_two/postMessage')
@@ -30,4 +25,4 @@ const RootSubscriptionType = new GraphQLObjectType({
 const gqlSchema = new GraphQLSchema({query: RootQueryType, mutation: RootMutationType, subscription: RootSubscriptionType})
 
 //typedef and resolvers is the SDL way and gqlSchema is the stitched GraphQL Object way
-module.exports = {schema, gqlSchema}
+module.exports = { gqlSchema}

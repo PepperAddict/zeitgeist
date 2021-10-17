@@ -5,13 +5,14 @@ query {
     getAllMessages {
       name
       message
+      column
     }
   }
 `;
 
 export const POST_MESSAGE = gql`
-mutation ($theUser: String!, $theMessage: String!, $theFile: String) {
-    postMessage(name: $theUser, message: $theMessage, file: $theFile)
+mutation ($theUser: String!, $theMessage: String!, $theColumn: String!) {
+    postMessage(name: $theUser, message: $theMessage, column: $theColumn)
   }
 `
 
@@ -22,17 +23,11 @@ subscription {
     name 
     message
     date
-    file
+    column
   }
 }
 `
 
-export const UPLOAD_IMAGE = gql`
-mutation ($file:  Upload!) {
-  uploadImage(file: $file) 
-}
-
-`
 
 export const REMOVE_MESSAGE = gql`
 mutation ($id: ID!) {
