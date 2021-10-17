@@ -9,7 +9,7 @@ const neDBAll = () => {
             if (err) reject(err);
             resolve(docs);
         })
-    }).catch((err) => console.log(err))
+    }).catch((err) =>  new Error('getting all went wrong' + err))
 }
 
 
@@ -20,7 +20,7 @@ const neDBCount = () => {
             if (err) reject(err);
             resolve(docs.length);
         })
-    }).catch((err) => console.log(err))
+    }).catch((err) =>  new Error('count went wrong' + err))
 }
 
 //This is for adding data into database.db
@@ -32,20 +32,20 @@ const neDBAdd = async ( data) => {
             if (err) reject(err);
             resolve(newDoc)
         })
-    }).catch((err) => console.log(err))
+    }).catch((err) =>  new Error('add went wrong' + err))
 }
 
 //This is for deleting a data in database.db
-const neDBRemove = async (id) => {
+const neDBRemove = async ({_id}) => {
     return new Promise((resolve, reject) => {
-        const idINT = parseInt(id)
+        const idINT = parseInt(_id)
 
         database.remove({_id: idINT}, (err, numRemoved) => {
             if (err) reject(err);
-            console.log(numRemoved)
             resolve(numRemoved)
         })
-    }).catch((err) => console.log(err))
+        database.persistence.compactDatafile()
+    }).catch((err) => new Error('remove went wrong' + err) )
 }
 
 //this is for subscriptions.

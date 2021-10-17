@@ -26,11 +26,11 @@ export default function Room() {
     // }
 
     return <div className="main-container">
-        <h1>Hello {user}</h1>
 
-        <Column column="start" />
-        <Column column="stop" />
-        <Column column="continue" />
+
+        <Column column="Start" />
+        <Column column="Stop" />
+        <Column column="Continue" />
 
     </div>
 }

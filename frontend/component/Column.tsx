@@ -17,7 +17,7 @@ function Messages({ messages, user, theColumn }) {
     return (<div className="chat-container">
         {messages.sort((a, b) => b._id - a._id).map(({ _id, name, message, column }, key) => {
             if (column === theColumn) {
-                 return <p className="chat" key={_id}> <strong>{name}: </strong> {message} {(user === name) && <DeleteMessage id={_id} />}  </p>
+                return <p className="chat" key={_id}> <strong>{name}: </strong> {message} {(user === name) && <DeleteMessage id={_id} />}  </p>
             }
 
         })}
@@ -25,7 +25,7 @@ function Messages({ messages, user, theColumn }) {
     )
 }
 
-export default function Column ({column}) {
+export default function Column({ column }) {
     const user = useSelector((state: RootStateOrAny) => state.user.value);
     const [message, setMessage] = useState('');
 
@@ -35,7 +35,7 @@ export default function Column ({column}) {
     const submitForm = (e) => {
         e.preventDefault();
 
-        
+
         if (message.length > 1) {
             sendMessage({
                 variables: {
@@ -51,18 +51,22 @@ export default function Column ({column}) {
 
     }
 
-    return(
+    return (
         <div>
-        <form onSubmit={(e) => submitForm(e)}>
-            <label>
-                <h2>{column}</h2>
-                <input placeholder="Enter a message" value={message} onChange={(e) => setMessage(e.target.value)} />
-            </label>
+            <h2>{column}</h2>
+            {data && <Messages messages={data.newMessages} user={user} theColumn={column} />}
 
-            <button type="submit">Send</button>
-        </form>
-        
-        { data && <Messages messages={data.newMessages} user={user} theColumn={column} />}
+            <form onSubmit={(e) => submitForm(e)}>
+
+                <label>
+
+                    <input value={message} onChange={(e) => setMessage(e.target.value)} />
+                </label>
+
+                <button type="submit">Add</button>
+            </form>
+
+
 
         </div>
     )
