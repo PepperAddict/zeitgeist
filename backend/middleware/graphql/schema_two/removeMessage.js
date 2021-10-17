@@ -8,7 +8,6 @@ module.exports = {
     _id: {type: GraphQLNonNull(GraphQLID)},
   },
    resolve: async (parent, {_id}) => {
-    file = file ? file : "false";
     try {
       return await neDBRemove({ _id})
         .then((res) => {

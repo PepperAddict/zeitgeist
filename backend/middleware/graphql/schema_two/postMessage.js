@@ -7,13 +7,12 @@ module.exports = {
   args: {
     name: {type: GraphQLNonNull(GraphQLString)},
     message: {type: GraphQLNonNull(GraphQLString)},
-    file: {type: GraphQLString}
+    column: {type: GraphQLNonNull(GraphQLString)},
   },
-   resolve: async (parent, {name, message, file}) => {
+   resolve: async (parent, {name, message, column}) => {
     let date = String(new Date());
-    file = file ? file : "false";
     try {
-      return await neDBAdd({ name, message, date, file })
+      return await neDBAdd({ name, message, date, column })
         .then((res) => {
           //this will trigger the subscribers and give them the updated messages
           subscribers.forEach((fn) => fn());
