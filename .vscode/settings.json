@@ -1,0 +1,14 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "azureFunctions.deploySubpath": ".",
+    "azureFunctions.postDeployTask": "npm install (functions)",
+    "azureFunctions.projectLanguage": "TypeScript",
+    "azureFunctions.projectRuntime": "~3",
+    "debug.internalConsoleOptions": "neverOpen",
+    "azureFunctions.preDeployTask": "npm prune (functions)",
+    "appService.defaultWebAppToDeploy": "/subscriptions/85f10505-cbcb-4557-8804-170ec9a4a11a/resourceGroups/ODL-Hackathon-454725/providers/Microsoft.Web/sites/zeitgeist-app",
+    "appService.deploySubpath": "."
+}

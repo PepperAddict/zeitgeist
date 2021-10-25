@@ -3,10 +3,9 @@ import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 import { setName } from '../redux/states.js';
 import '../styles/app.styl'
-
+import logo from '../../public/images/logo.png'
 
 export default function Welcome () {
-
     const [name, inputName] = useState(null);
     const dispatch = useDispatch()
     const user = useSelector((state: RootStateOrAny) => state.user.value)
@@ -22,8 +21,7 @@ export default function Welcome () {
 
     return (
         <div className="home-container">
-            
-          <h1>Enter your room number and a nickname</h1>
+            <img src={logo} alt="logo"/>
             <form onSubmit={enterUsername}>
                    <input placeholder="Enter a nickname" pattern="[A-Za-z]{3,10}" title="Letters only 3-10 characters" onChange={(e) => inputName(e.target.value)} /> 
                    <button type="submit">Enter</button>

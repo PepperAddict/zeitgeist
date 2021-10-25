@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display&display=swap');
 html,
 body,
 #root, #app {
@@ -10,21 +10,16 @@ body,
   height: 100%;
   width: 100%;
 }
-div {
-    height: 100%;
-    width: 100%;
-}
-
 body {
-  font-family: 'Inter var', sans-serif;
-  background: linear-gradient(155deg, #ffffff 20%, #a5a3a3);
-  color: #101015;
+    font-family: 'Noto Serif Display', serif;
+    background: linear-gradient(155deg, #ffffff 20%, #a5a3a3);
+    color: #101015;
 }
 .mode-container
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: -1;
+    // position: fixed;
+    // left: 0;
+    // top: 0;
+    // z-index: -1;
     width: 100%;
     height: 100vw;
 canvas 
@@ -40,11 +35,12 @@ canvas
     display: grid;
     place-content: center;
     height: 100%;
+    position: fixed;
+    top: 0px;
 form 
     display: grid;
     position: relative;
     width: 100%;
-    margin: 20px 0;
     padding: 20px 0;
     button 
         justify-self: end;
@@ -57,12 +53,12 @@ form
     input 
         width: 100%;
         height: 50px;
-        border: 2px solid #ccc;
+        border: 1px dotted #ccc;
         border-radius: 5px;
         padding: 5px;
         box-sizing: border-box;
         font-size: 18px;
-        margin: 10px;
+        margin: 0 0 10px;
 
 button 
     height: 40px;

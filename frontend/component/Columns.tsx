@@ -4,9 +4,9 @@ import Column from './Column';
 export default function Columns() {
     return (
         <>
-        <Column column="Start"  />
-        <Column column="Stop"/>
-        <Column column="Continue"/>
+        <Column column="START"  />
+        <Column column="STOP"/>
+        <Column column="CONTINUE"/>
         </>
     )
 }

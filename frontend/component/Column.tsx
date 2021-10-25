@@ -2,7 +2,7 @@ import { useMutation, useSubscription } from '@apollo/client';
 import React, { useState } from 'react';
 import { POST_MESSAGE, WATCH_MESSAGE, REMOVE_MESSAGE } from '../helpers/graphql';
 import { RootStateOrAny, useSelector } from 'react-redux';
-
+import '../styles/columns.styl'
 //This is for deleting a message if it belongs to the user
 function DeleteMessage({ id }) {
     const [removeMessage] = useMutation(REMOVE_MESSAGE)
@@ -42,6 +42,7 @@ export default function Column({ column }) {
 
 
         if (message.length > 1) {
+            console.log(user, message, column)
             sendMessage({
                 variables: {
                     theUser: user,
@@ -57,7 +58,7 @@ export default function Column({ column }) {
     }
 
     return (
-        <div>
+        <div className="column-container">
             <h2>{column}</h2>
             {data && <Messages messages={data.newMessages} user={user} theColumn={column} />}
 
