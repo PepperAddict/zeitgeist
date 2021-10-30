@@ -8,7 +8,8 @@ export const theUser = createSlice({
     },
     reducers: {
         setName: (state, data) => {
-            localStorage.setItem('name', data);
+            
+            localStorage.setItem('name', data.payload);
             return {
                 ...state, 
                 value: localStorage.getItem('name')
@@ -22,13 +23,14 @@ export const theUser = createSlice({
 export const theMode = createSlice({
     name: 'mode', 
     initialState: {
-        value: 'bubbles'
+        value: localStorage.getItem('mode') ? localStorage.getItem('mode') : 'START'
     },
     reducers: {
         setMode: (state, data) => {
+            localStorage.setItem('mode', data.payload);
             return {
                 ...state, 
-                value: data.payload
+                value: localStorage.getItem('mode')
             }
         }
     }

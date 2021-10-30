@@ -44,11 +44,6 @@ export default function Column({ column }) {
     const [audio, setAudio] = useState('' as any);
 
 
-
-
-
-
-
     const submitForm = () => {
         event.preventDefault();
 
