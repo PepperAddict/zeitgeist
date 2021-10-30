@@ -3,7 +3,7 @@ import {createSlice} from '@reduxjs/toolkit'
 export const theUser = createSlice({
     name: 'user',
     initialState: {
-        value: null
+        value: 'maxx'
     },
     reducers: {
         setName: (state, data) => {

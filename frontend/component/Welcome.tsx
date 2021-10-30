@@ -21,11 +21,19 @@ export default function Welcome () {
 
     return (
         <div className="home-container">
-            <img src={logo} alt="logo"/>
-            <form onSubmit={enterUsername}>
+            
+            <div className="boxContainer">
+                <img src={logo} alt="logo" className="logo"/>
+             <div className="box1"><span>REFLECT</span></div>   
+             <div className="box2"><span>IMPROVE</span></div>
+                         <form onSubmit={enterUsername}>
                    <input placeholder="Enter a nickname" pattern="[A-Za-z]{3,10}" title="Letters only 3-10 characters" onChange={(e) => inputName(e.target.value)} /> 
                    <button type="submit">Enter</button>
             </form>
+            </div>
+            
+
+            
         </div>
     )
 }

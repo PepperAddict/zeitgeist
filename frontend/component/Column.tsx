@@ -12,8 +12,8 @@ function DeleteMessage({ id }) {
     return <span onClick={() => initiateRemoval()}>✖</span>
 }
 
-function Message ( props) {
-    const {message, user, name, _id} = props;
+function Message(props) {
+    const { message, user, name, _id } = props;
     const [hide, setHide] = useState(true);
     return <p className="chat" key={_id}> <strong> {message}</strong> {(user === name) && <DeleteMessage id={_id} />}  </p>
 }
@@ -23,8 +23,8 @@ function Messages(props) {
     return (<div className="chat-container">
         {props.messages.sort((a, b) => b._id - a._id).map(({ _id, name, message, column }) => {
             if (column.toLowerCase() === props.theColumn.toLowerCase()) {
-                return <Message {...props} name={name} _id={_id} message={message} key={_id}/>
-            } 
+                return <Message {...props} name={name} _id={_id} message={message} key={_id} />
+            }
         })}
     </div>
     )
@@ -59,8 +59,7 @@ export default function Column({ column }) {
 
     return (
         <div className="column-container">
-            <h2>{column}</h2>
-            {data && <Messages messages={data.newMessages} user={user} theColumn={column} />}
+
 
             <form onSubmit={(e) => submitForm(e)}>
 
@@ -70,7 +69,7 @@ export default function Column({ column }) {
 
                 <button type="submit">Add</button>
             </form>
-
+            {data && <Messages messages={data.newMessages} user={user} theColumn={column} />}
         </div>
     )
 }

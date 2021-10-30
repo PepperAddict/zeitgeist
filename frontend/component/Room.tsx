@@ -20,7 +20,6 @@ export default function Room() {
 
     return <div className="main-container">
         <Columns />
-
         <span className="clear" onClick={() => clearAll()}>clear</span>
     </div>
 }
