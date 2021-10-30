@@ -1,19 +1,23 @@
-import {createSlice} from '@reduxjs/toolkit'
+import {createSlice} from '@reduxjs/toolkit';
+import {useState, useEffect} from 'react';
 
 export const theUser = createSlice({
     name: 'user',
     initialState: {
-        value: 'maxx'
+        value: localStorage.getItem('name')
     },
     reducers: {
         setName: (state, data) => {
+            localStorage.setItem('name', data);
             return {
                 ...state, 
-                value: data.payload
+                value: localStorage.getItem('name')
             }
         }
     }
 })
+
+
 
 export const theMode = createSlice({
     name: 'mode', 
