@@ -1,5 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Display&display=swap');
 html,
 body,
 #root, #app {
@@ -9,22 +9,18 @@ body,
   left: 0;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
-div {
-    height: 100%;
-    width: 100%;
-}
-
 body {
-  font-family: 'Inter var', sans-serif;
-  background: linear-gradient(155deg, #ffffff 20%, #a5a3a3);
-  color: #101015;
+    font-family: 'Noto Serif Display', serif;
+    background: linear-gradient(155deg, #ffffff 20%, #a5a3a3);
+    color: #101015;
 }
 .mode-container
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: -1;
+    // position: fixed;
+    // left: 0;
+    // top: 0;
+    // z-index: -1;
     width: 100%;
     height: 100vw;
 canvas 
@@ -40,12 +36,14 @@ canvas
     display: grid;
     place-content: center;
     height: 100%;
+    position: fixed;
+    top: 0px;
 form 
     display: grid;
-    position: relative;
-    width: 100%;
-    margin: 20px 0;
     padding: 20px 0;
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
     button 
         justify-self: end;
         margin: 0px;
@@ -57,12 +55,13 @@ form
     input 
         width: 100%;
         height: 50px;
-        border: 2px solid #ccc;
+        border: 1px dotted #ccc;
         border-radius: 5px;
         padding: 5px;
         box-sizing: border-box;
         font-size: 18px;
-        margin: 10px;
+        margin: 0 0 10px;
+        outline: 1px solid #ccc;
 
 button 
     height: 40px;
@@ -70,14 +69,59 @@ button
     margin: 5px 0;
     float: right;
     cursor: pointer;
-    background: #00b2d8;
+    background: #00B0FF;;
     color: white;
     border: 0px;
     font-weight: bold;
     font-size: 1.5 rem;
+    font-family: Arial, Helvetica, sans-serif;
     text-transform: uppercase;
     transition: .3s;
+    letter-spacing: 5px;
     &:hover 
-        background: hotpink;
+        background: #009BE1;
         transition: .3s;
 
+.logo 
+    width: 150px;
+    position: absolute;
+    top: -90px;
+    z-index: 4;
+    right: 0;
+.boxContainer 
+    display: flex;
+    position: relative;
+    max-width: 800px;
+    width: 100vw;
+    form 
+        position: absolute;
+        transform: translateX(-50%) translateY(-50%);
+        top: 50%;
+        left: 50%;
+.box1
+    width: 50%;
+    height: 300px;
+    background: #00B0FF;
+    box-shadow: 13px 3px 30px rgba(0, 0, 0, 0.2);
+    margin-top: -50px
+    position: relative;
+    span
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        color: white;
+        letter-spacing: 5px;
+        font-family: Arial, Helvetica, sans-serif
+.box2 
+    width: 50%;
+    height: 300px;
+    box-shadow: 13px 3px 30px rgba(0, 0, 0, 0.2);
+    background: white;
+    position: relative;
+    span 
+        position: absolute;
+        top: 10px;
+        color: #00B0FF;
+        left: 10px;
+        font-family: Arial, Helvetica, sans-serif;
+        letter-spacing: 5px;

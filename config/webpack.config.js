@@ -2,7 +2,7 @@ const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCSSExtractPlugin = require("mini-css-extract-plugin");
-
+const Dotenv = require('dotenv-webpack');
 module.exports = {
   mode: "development",
   entry: {
@@ -55,6 +55,14 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i, 
+        loader: 'url-loader',
+        options: {
+          name: '/public/icons/[name].[ext]'
+        }
+      },
+
 
       {
         test: /\.styl$/,
@@ -90,7 +98,10 @@ module.exports = {
       filename: "[name]-bundled-style.css",
       chunkFilename: "[id].css",
     }),
-    // new CleanWebpackPlugin(),
+    new Dotenv({
+      path: path.resolve(__dirname, '../.env'),
+      systemvars: true,
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "../frontend/index.html"),
     }),

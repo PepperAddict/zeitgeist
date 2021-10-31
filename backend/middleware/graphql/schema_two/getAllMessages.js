@@ -5,8 +5,7 @@ module.exports = {
     type: new GraphQLNonNull(new GraphQLList(MessageType)), 
     description: "This will retrieve a list of messages using neDB",
     resolve: async (parent, variables, context) => {
-        const allData =  await neDBAll();
-        console.log(allData)
+        const allData =  await neDBAll()
         return allData;
     }
 }

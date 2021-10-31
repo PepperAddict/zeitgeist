@@ -34,3 +34,9 @@ mutation ($id: ID!) {
   removeMessage(_id: $id)
 }
 `
+
+export const REMOVE_All = gql`
+mutation {
+  removeAll
+}
+`
