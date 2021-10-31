@@ -9,6 +9,7 @@ body,
   left: 0;
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 body {
     font-family: 'Noto Serif Display', serif;
@@ -40,7 +41,9 @@ canvas
 form 
     display: grid;
     padding: 20px 0;
-    width: 500px;
+    max-width: 500px;
+    width: 100%;
+    margin: auto;
     button 
         justify-self: end;
         margin: 0px;

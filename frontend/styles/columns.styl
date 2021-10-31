@@ -25,10 +25,14 @@
 
 .tabs-container 
     width: 100%;
-    grid-template-columns: repeat(3, 150px);
     display: grid;
     font-family: Arial, Helvetica, sans-serif;
     grid-gap: 10px;
+    grid-template-columns: repeat(3, 150px);
+    max-width: 500px;
+    overflow: scroll;
+    @media screen and (max-width: 1024px) 
+        max-width: 320px
     .tab 
         padding: 15px;
         color: white;

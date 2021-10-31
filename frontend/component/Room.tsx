@@ -5,8 +5,9 @@ import Columns from './Columns';
 import {Redirect} from 'react-router-dom'
 import { REMOVE_All } from '../helpers/graphql';
 import { useMutation } from '@apollo/client';
+import logo from '../../public/images/logo.png';
 
-import { setName } from '../redux/states.js';
+import { setName, setMode } from '../redux/states.js';
 import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 
 export default function Room() {
@@ -19,10 +20,12 @@ export default function Room() {
 
     const clearAll = () => {
         dispatch(setName(''))
+        dispatch(setMode('START'))
         removeAll();
     }
 
     return <div className="main-container">
+        <img src={logo} alt="logo" className="logo-room"/>
         <Columns />
         <span className="clear" onClick={() => clearAll()}>clear</span>
     </div>
