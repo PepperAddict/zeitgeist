@@ -50,7 +50,6 @@ const neDBRemove = async ({ _id }) => {
 //This is for deleting a data in database.db
 const neDBRemoveAll = async () => {
   return new Promise((resolve, reject) => {
-
     database.remove({}, { multi: true }, (err, numRemoved) => {
       if (err) reject(err);
       resolve(numRemoved);
