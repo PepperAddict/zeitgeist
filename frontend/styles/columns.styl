@@ -1,6 +1,7 @@
 .column-container
     padding: 30px 15px;
-    background-image: linear-gradient(to bottom, #f1f1f1, #eaeaea, #e3e3e3, #dcdcdc, #d5d5d5);
+    background-image: linear-gradient(to bottom, #ffffff, #f9f9f9, #f4f4f4, #eeeeee, #e9e9e9);
+    border-radius: 0 0 10px 10px;
     h2 
         letter-spacing: 2px;
         padding: 10px;
@@ -8,15 +9,22 @@
         background: rgba(255, 255, 255, 0.5);
     button
         background: white;
+        border-radius: 15px;
+        border: 1px solid #cdcdcd;
     textarea 
         border-radius: 0px;
         width: 100%;
         height: 50px;
-        padding: 5px;
+        padding: 15px;
         font-family: Arial, Helvetica, sans-serif;
-        border: 1px solid white;
+        border: 1px solid #cdcdcd;
         box-sizing: border-box;
-        border-radius: 2px;
+        max-width: 500px;
+        min-width: 200px;
+        min-height: 200px;
+        max-height: 900px;
+        border-radius: 10px;
+
     textarea::placeholder
         font-family: Arial, Helvetica, sans-serif;
     textarea:focus-visible
@@ -77,29 +85,41 @@
 
 .col-START
     border-top: 13px solid #1CBAFF;
+    box-shadow: 13px 13px 30px rgba(0,127, 184, 0.2);
     button 
         color: #00B0FF
+        box-shadow: 3px 3px 30px rgba(0,127, 184, 0.2);
     textarea::placeholder
         color: #0071a4
+    p 
+        box-shadow: 3px 3px 30px rgba(0,127, 184, 0.2);
 .col-STOP
     border-top: 13px solid #FF476D;
+    box-shadow: 13px 3px 30px rgba(255, 71, 109, 0.2);
     button
         color: #FF476D
+        box-shadow: 3px 3px 30px rgba(255, 71, 109, 0.2);
     textarea::placeholder 
         color: #FF476D
+    p 
+        box-shadow: 3px 3px 30px rgba(255, 71, 109, 0.2);
 .col-CONTINUE
-    border-top: 13px solid #04C47D;
+    border-top: 13px solid #4EBC70;
+    box-shadow: 13px 13px 30px rgba(4, 196, 125, 0.2);
     button 
-        color: #04C47D
+        color: #4EBC70;
+        box-shadow: 3px 3px 30px rgba(4, 196, 125, 0.2);
     textarea::placeholder 
-        color: #00B975
+        color: #4EBC70
+    p 
+        box-shadow: 3px 3px 30px rgba(4, 196, 125, 0.2);
 
 .bg-START
     background-image: linear-gradient(to bottom, #75cdf5, #65c8f7, #52c4fa, #3dbffc, #1cbaff);
 .bg-STOP
     background-image: linear-gradient(to bottom, #ff7793, #ff6c8a, #ff6181, #ff5577, #ff476d);
 .bg-CONTINUE
-    background-image: linear-gradient(to bottom, #13e497, #10dc90, #0cd48a, #08cc83, #04c47d);
+    background-image: linear-gradient(to bottom, #4fd176, #4fcc75, #4fc673, #4ec172, #4ebc70);
 
 
 @keyframes pulse 
