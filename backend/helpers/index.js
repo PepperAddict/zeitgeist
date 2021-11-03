@@ -29,7 +29,7 @@ const neDBAdd = async (data) => {
   console.log(count);
 
   return new Promise((resolve, reject) => {
-    database.insert({ ...data, _id: Math.floor((Math.random()*1000) + 1) }, (err, newDoc) => {
+    database.insert({ ...data, _id: Date.now() }, (err, newDoc) => {
       if (err) reject(err);
       resolve(newDoc);
     });

@@ -9,11 +9,9 @@ body,
   left: 0;
   height: 100%;
   width: 100%;
-  overflow: hidden;
 }
 body {
     font-family: 'Noto Serif Display', serif;
-    background: linear-gradient(155deg, #ffffff 20%, #a5a3a3);
     color: #101015;
 }
 .mode-container
@@ -125,3 +123,12 @@ button
         left: 10px;
         font-family: Arial, Helvetica, sans-serif;
         letter-spacing: 5px;
+
+.backdrop 
+    position: fixed;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(60px);
+    background-color: rgba(255, 255, 255, 0.2);
+    z-index: -1;

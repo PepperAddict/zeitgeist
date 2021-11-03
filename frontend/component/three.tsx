@@ -15,9 +15,9 @@ export default function Bubbles() {
     function Sphere({ geometry, x, y, z, s, color }) {
         const ref = useRef()
         useFrame((state) => {
-            ref.current.position.x = x - state.mouse.x * 2
-            ref.current.position.y = y - state.mouse.y * 2
-            ref.current.position.z = z - Math.sin((state.clock.getElapsedTime() * s))
+            ref.current.position.x = x - Math.sin((state.clock.getElapsedTime() * 2) ) + state.mouse.x 
+            ref.current.position.y = y - Math.sin((state.clock.getElapsedTime() * 5) ) + state.mouse.y
+            ref.current.position.z = z - Math.sin((state.clock.getElapsedTime() * 3) )
         })
         return (
             <mesh ref={ref} position={[x, y, z]} scale={[s, s, s]} geometry={geometry}>
@@ -27,13 +27,13 @@ export default function Bubbles() {
     }
 
     function RandomSpheres({ color, amount, startSize }) {
-        const [geometry] = useState(() => new THREE.SphereGeometry(startSize, 25, 25), [])
+        const [geometry] = useState(() => new THREE.SphereGeometry(startSize, 65, 65), [])
         const data = useMemo(() => {
             return new Array(amount).fill().map((_, i) => ({
                 x: Math.random() * 150 - 50,
                 y: Math.random() * 150 - 50,
-                z: Math.random() * 150 - 50,
-                s: Math.random() + 2,
+                z: Math.random() * 150 - 150,
+                s: Math.random() + 5,
             }))
         }, [])
         return data.map((props, i) => <Sphere key={i} {...props} geometry={geometry} color={color} />)
@@ -45,7 +45,7 @@ export default function Bubbles() {
         const width = window.innerWidth;
         const height = window.innerHeight;
          const camera = new THREE.PerspectiveCamera(90, width / height, 0.1, 1000);
-         //const camera = new THREE.OrthographicCamera(width/-2, width /2, height /2, height / -2, 1, 1000)
+
         useFrame(() => {
             gl.autoClear = false
             gl.clearDepth()
@@ -56,9 +56,9 @@ export default function Bubbles() {
 
 
     return (
-        <Canvas linear camera={{ position: [0, 0, 120] }}>
+        <Canvas linear camera={{ position: [0, 0, 120] }} style={{position: "fixed", zIndex: -2, background: 'linear-gradient(155deg, #ffffff 20%, #a5a3a3)', top: 0 }}>
             <Main>
-                <fog attach="fog" args={["white", 0, 40]} />
+                {/* <fog attach="fog" args={["rgba(216, 222, 255)", 0, 40]} /> */}
                 <ambientLight intensity={0.4} />
                 <directionalLight
                     castShadow
@@ -78,9 +78,9 @@ export default function Bubbles() {
                     <Environment preset="city" />
                 </Suspense>
                 <ContactShadows position={[0, -30, 0]} opacity={0.5} width={130} height={130} blur={2} far={40} />
-                <RandomSpheres color="gray" amount={100} startSize={1} />
-                <RandomSpheres color="rgba(255, 144, 225)" amount={50} startSize={1} />
-                <RandomSpheres color="rgba(20, 202, 255)" amount={100} startSize={0.5} />
+                <RandomSpheres color="rgba(54, 116, 255)" amount={100} startSize={1} />
+                <RandomSpheres color="rgba(54, 255, 182)" amount={150} startSize={1} />
+                <RandomSpheres color="rgba(255, 94, 219)" amount={100} startSize={0.5} />
             </Main>
         </Canvas>
     )
