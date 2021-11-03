@@ -16,6 +16,7 @@ module.exports = {
         .then((res) => {
           //this will trigger the subscribers and give them the updated messages
           subscribers.forEach((fn) => fn());
+          console.log(res);
           return true;
         })
         .catch((err) => console.log(err));

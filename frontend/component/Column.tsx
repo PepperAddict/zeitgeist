@@ -17,9 +17,8 @@ function DeleteMessage({ id }) {
 }
 
 function Message(props) {
-    const { message, user, name, _id } = props;
-    const [hide, setHide] = useState(true);
-    return <p className="chat" key={_id}> {message}{(user === name) && <DeleteMessage id={_id} />}  </p>
+    const { message, user, name, _id, column } = props;
+    return <span className="message" key={_id}><p className={"chat bg-" + column} > {message}{(user === name) && <DeleteMessage id={_id} />}  </p></span>
 }
 
 function Messages(props) {
@@ -27,7 +26,7 @@ function Messages(props) {
     return (<div className="chat-container">
         {props.messages.sort((a, b) => b._id - a._id).map(({ _id, name, message, column }) => {
             if (column.toLowerCase() === props.theColumn.toLowerCase()) {
-                return <Message {...props} name={name} _id={_id} message={message} key={_id} />
+                return <Message {...props} name={name} _id={_id} message={message} key={_id} column={column} />
             }
         })}
     </div>
@@ -46,10 +45,8 @@ export default function Column({ column }) {
 
     const submitForm = () => {
         event.preventDefault();
-
-
+        
         if (message.length > 1) {
-            console.log(user, message, column)
             sendMessage({
                 variables: {
                     theUser: user,
@@ -57,9 +54,10 @@ export default function Column({ column }) {
                     theColumn: column
                 }
             })
+            setMessage('')
         }
 
-        setMessage(' ')
+        
 
     }
 
@@ -88,7 +86,7 @@ export default function Column({ column }) {
                 recognizer.recognized = (s, e) => {
                     if (e.result.text) {
 
-                        setMessage(message += e.result.text)
+                        setMessage(message += ' ' + e.result.text)
                         if (e.result.text.toLowerCase().includes('send comment')) {
                             submitForm();
                             message = ''
@@ -117,12 +115,11 @@ export default function Column({ column }) {
     return (
         <div className={"column-container col-" + column}>
             <form onSubmit={(e) => submitForm()}>
-
                 <label>
                     <textarea value={message} ref={inputText} onChange={(e) => setMessage(e.target.value)} placeholder="Enter a comment" />
 
                     <div className="listeningContainer">
-                    {!listening ? <span onClick={initiate}>🎤 Listen</span> : 
+                    {!listening ? <span onClick={initiate} className="listen">🎤 LISTEN</span> : 
                     <span className="active" onClick={stopListening}>To submit, say: <span className="sayThis">Send comment</span>. <br /> Click or say: <span className="sayThis">Stop Listening</span> to end</span>}
                     </div>
                 </label>

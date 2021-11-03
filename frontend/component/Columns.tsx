@@ -20,9 +20,9 @@ export default function Columns() {
     return (
         <div className="roomColumnsContainer">
             <div className="tabs-container">
-                <div className="tab col-START" onClick={() => setCol('START')}>START</div>
-                <div className="tab col-STOP" onClick={() => setCol('STOP')}>STOP</div>
-                <div className="tab col-CONTINUE" onClick={() => setCol('CONTINUE')}>CONTINUE</div>
+                <div className="tab bg-START" onClick={() => setCol('START')}>START</div>
+                <div className="tab bg-STOP" onClick={() => setCol('STOP')}>STOP</div>
+                <div className="tab bg-CONTINUE" onClick={() => setCol('CONTINUE')}>CONTINUE</div>
             </div>
             <Column column={col} />
         </div>

@@ -2,7 +2,7 @@ import React from 'react';
 
 import '../styles/room.styl';
 import Columns from './Columns';
-import {Redirect} from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 import { REMOVE_All } from '../helpers/graphql';
 import { useMutation } from '@apollo/client';
 import logo from '../../public/images/logo.png';
@@ -25,8 +25,8 @@ export default function Room() {
     }
 
     return <div className="main-container">
-        <img src={logo} alt="logo" className="logo-room"/>
+        <img src={logo} alt="logo" className="logo-room" />
         <Columns />
-        <span className="clear" onClick={() => clearAll()}>clear</span>
+        <span className="clear" onClick={() => clearAll()}>clear everything</span>
     </div>
 }

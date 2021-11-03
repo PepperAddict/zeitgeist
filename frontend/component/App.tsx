@@ -24,7 +24,7 @@ const link = new WebSocketLink({
 })
 
 const client = new ApolloClient({
-   link,
+  link,
   uri: 'http://localhost:8080/graphql',
   cache: new InMemoryCache()
 })
@@ -37,14 +37,14 @@ const App = () => {
   return (
     <Provider store={store}>
       <ApolloProvider client={client}>
-<BG />
+        <BG />
 
         <Router>
-          
+
           <Route exact path="/">
             <Welcome />
           </Route>
-          
+
           <Route path="/room">
             <Room />
           </Route>

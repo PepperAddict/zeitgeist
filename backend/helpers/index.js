@@ -18,6 +18,7 @@ const neDBCount = () => {
     database.find({}, (err, docs) => {
       if (err) reject(err);
       resolve(docs.length);
+      database.persistence.compactDatafile();
     });
   }).catch((err) => new Error("count went wrong" + err));
 };
@@ -25,9 +26,10 @@ const neDBCount = () => {
 //This is for adding data into database.db
 const neDBAdd = async (data) => {
   const count = await neDBCount(database);
+  console.log(count);
 
   return new Promise((resolve, reject) => {
-    database.insert({ ...data, _id: count + 1 }, (err, newDoc) => {
+    database.insert({ ...data, _id: Math.floor((Math.random()*1000) + 1) }, (err, newDoc) => {
       if (err) reject(err);
       resolve(newDoc);
     });
@@ -42,8 +44,8 @@ const neDBRemove = async ({ _id }) => {
     database.remove({ _id: idINT }, (err, numRemoved) => {
       if (err) reject(err);
       resolve(numRemoved);
+      database.persistence.compactDatafile();
     });
-    database.persistence.compactDatafile();
   }).catch((err) => new Error("remove went wrong" + err));
 };
 
@@ -53,6 +55,7 @@ const neDBRemoveAll = async () => {
     database.remove({}, { multi: true }, (err, numRemoved) => {
       if (err) reject(err);
       resolve(numRemoved);
+
     });
     database.persistence.compactDatafile();
   }).catch((err) => new Error("remove went wrong" + err));

@@ -1,5 +1,6 @@
 .column-container
     padding: 30px 15px;
+    background-image: linear-gradient(to bottom, #f1f1f1, #eaeaea, #e3e3e3, #dcdcdc, #d5d5d5);
     h2 
         letter-spacing: 2px;
         padding: 10px;
@@ -24,15 +25,13 @@
 
 
 .tabs-container 
-    width: 100%;
-    display: grid;
+    display: flex;
     font-family: Arial, Helvetica, sans-serif;
     grid-gap: 10px;
-    grid-template-columns: repeat(3, 150px);
-    max-width: 100%;
     overflow: auto;
     @media screen and (max-width: 768px) 
-        max-width: 320px
+        max-width: 300px;
+        grid-gap: 1px;
     .tab 
         padding: 15px;
         color: white;
@@ -40,6 +39,12 @@
         font-weight: 600;
         letter-spacing: 2px;
         text-align: center;
+        width: 150px;
+        border-radius: 15px 15px 0 0;
+        @media screen and (max-width: 768px)
+            padding: 5px;
+            width: auto;
+            border-radius: 5px 5px 0 0;
     
 .listeningContainer 
     font-family: Arial, Helvetica, sans-serif;
@@ -50,6 +55,13 @@
     color: white;
     font-size: 14px;
     cursor: pointer;
+    .listen 
+        width: 100%;
+        padding: 10px;
+        display: block;
+        color: #323232;
+        font-size: 16px;
+        letter-spacing: 3px;
     span 
         padding: 10px;
         box-sizing: border-box;
@@ -64,23 +76,30 @@
 
 
 .col-START
-    background: #00B0FF
+    border-top: 13px solid #1CBAFF;
     button 
         color: #00B0FF
     textarea::placeholder
         color: #0071a4
 .col-STOP
-    background: #FF476D
+    border-top: 13px solid #FF476D;
     button
         color: #FF476D
     textarea::placeholder 
         color: #FF476D
 .col-CONTINUE
-    background: #00D687
+    border-top: 13px solid #04C47D;
     button 
-        color: #00D687
+        color: #04C47D
     textarea::placeholder 
-        color: #00D687
+        color: #00B975
+
+.bg-START
+    background-image: linear-gradient(to bottom, #75cdf5, #65c8f7, #52c4fa, #3dbffc, #1cbaff);
+.bg-STOP
+    background-image: linear-gradient(to bottom, #ff7793, #ff6c8a, #ff6181, #ff5577, #ff476d);
+.bg-CONTINUE
+    background-image: linear-gradient(to bottom, #13e497, #10dc90, #0cd48a, #08cc83, #04c47d);
 
 
 @keyframes pulse 

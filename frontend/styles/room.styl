@@ -1,15 +1,23 @@
 .main-container 
     width: 100%;
     font-size: 1.2rem;
-    padding: 30px;
+    padding: 5px;
     box-sizing: border-box;
     position: absolute;
     top: 0px;
     display: grid;
     grid-gap: 10px;
     align-items: start;
+    max-width: 800px;
+    margin: auto;
+    top: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    max-height: 100%;
+    overflow: auto;
     @media screen and (min-width: 1040px) 
        display: grid;
+       padding: 30px;
 
 .navigation-container 
     .active 
@@ -17,20 +25,28 @@
 
 .chat-container
     counter-reset: item-counter;
-    column-gap: 0;
+    column-gap: 10px;
+    row-gap: 10px;
+    columns: 3
     @media screen and (max-width: 600px) 
         display: grid;
+        columns: 1;
+    .message 
+        display: inline-flex;
+        margin: 0px;
+        padding: 10px;
     p 
         break-inside: avoid;
-        margin: 5px 0 10px;
-        padding: 10px;
-        border: 1px solid #ccc;
+        padding: 10px 40px 10px;
         font-size: 1rem;
-        background: #FFFCE6;
         box-shadow: 3px 3px 30px rgba(0, 0, 0, 0.2);
         color: #656565;
         font-weight: normal;
         font-family: Arial, Helvetica, sans-serif;
+        color: white;
+        border-radius: 15px;
+        border: 1px solid white;
+        line-height: 1.5rem;
         
     .img-container 
         display: flex;
@@ -60,17 +76,21 @@
         position: relative;
         span 
             position: absolute;
-            right: 0px;
-            top: 0px;
-            width: 40px;
-            height: 40px;
+            right: 5px;
+            top: 5px;
+            width: 30px;
+            height: 30px;
             color: #ff7474;
             cursor: pointer;
             display: grid;
             place-items: center;
+            background: white;
+            border-radius: 50%;
+            place-content: center;
+
 
 .clear 
-    position: fixed;
+    position: relative;
     bottom: 0px;
     right: 0px;
     font-family: Arial, Helvetica, sans-serif;
