@@ -11,8 +11,8 @@ query {
 `;
 
 export const POST_MESSAGE = gql`
-mutation ($theUser: String!, $theMessage: String!, $theColumn: String!) {
-    postMessage(name: $theUser, message: $theMessage, column: $theColumn)
+mutation ($theUser: String!, $theMessage: String!, $theColumn: String!, $theLike: Int!) {
+    postMessage(name: $theUser, message: $theMessage, column: $theColumn, like: $theLike)
   }
 `
 
@@ -23,7 +23,8 @@ subscription {
     name 
     message
     date
-    column
+    column,
+    like
   }
 }
 `
@@ -38,5 +39,11 @@ mutation ($id: ID!) {
 export const REMOVE_All = gql`
 mutation {
   removeAll
+}
+`
+
+export const UPVOTE = gql`
+mutation ($id: ID!,$like: Int) {
+  upvote(id: $id,like: $like)
 }
 `

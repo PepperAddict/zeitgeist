@@ -34,6 +34,20 @@ const neDBAdd = async (data) => {
   }).catch((err) => new Error("add went wrong" + err));
 };
 
+//This is for adding data into database.db
+const neDBUpdate = async ({id, like}) => {
+  const idInt = parseInt(id);
+
+  return new Promise((resolve, reject) => {
+    database.update({ _id: idInt}, {$set: {like}}, {}, (err, number) => {
+      if (err) reject(err);
+      console.log(number);
+      resolve(number);
+    });
+  }).catch((err) => new Error("add went wrong" + err));
+};
+
+
 //This is for deleting a data in database.db
 const neDBRemove = async ({ _id }) => {
   return new Promise((resolve, reject) => {
@@ -72,4 +86,5 @@ module.exports = {
   neDBRemove,
   subscribers,
   neDBRemoveAll,
+  neDBUpdate
 };

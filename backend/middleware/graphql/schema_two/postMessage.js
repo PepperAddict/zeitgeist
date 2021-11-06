@@ -1,5 +1,5 @@
 const { neDBAdd, subscribers } = require("../../../helpers");
-const { GraphQLNonNull, GraphQLString, GraphQLBoolean } = require("graphql");
+const { GraphQLNonNull, GraphQLString, GraphQLBoolean, GraphQLInt } = require("graphql");
 
 module.exports = {
   type: new GraphQLNonNull(GraphQLBoolean),
@@ -8,12 +8,14 @@ module.exports = {
     name: {type: GraphQLNonNull(GraphQLString)},
     message: {type: GraphQLNonNull(GraphQLString)},
     column: {type: GraphQLNonNull(GraphQLString)},
+    like: {type: GraphQLNonNull(GraphQLInt)}
   },
-   resolve: async (parent, {name, message, column}) => {
+   resolve: async (parent, {name, message, column, like}) => {
     let date = String(new Date());
     try {
-      return await neDBAdd({ name, message, date, column })
+      return await neDBAdd({ name, message, date, column, like})
         .then((res) => {
+          console.log(res);
           //this will trigger the subscribers and give them the updated messages
           subscribers.forEach((fn) => fn());
           return true;

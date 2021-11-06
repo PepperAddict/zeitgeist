@@ -1,6 +1,6 @@
 import { useMutation, useSubscription } from '@apollo/client';
 import React, { useState, useRef, useEffect } from 'react';
-import { POST_MESSAGE, WATCH_MESSAGE, REMOVE_MESSAGE } from '../helpers/graphql';
+import { POST_MESSAGE, WATCH_MESSAGE, REMOVE_MESSAGE, UPVOTE } from '../helpers/graphql';
 import { RootStateOrAny, useSelector } from 'react-redux';
 import '../styles/columns.styl';
 const sdk = require('microsoft-cognitiveservices-speech-sdk');
@@ -16,17 +16,37 @@ function DeleteMessage({ id }) {
     return <span onClick={() => initiateRemoval()}>✖</span>
 }
 
+function Like({ id, like, name }) {
+    const [upVote] = useMutation(UPVOTE);
+    const user = useSelector((state: RootStateOrAny) => state.user.value);
+
+    const upvote = () => {
+        try {
+            upVote({
+                variables: {
+                    id: id,
+                    like: like + 1
+                }
+            })
+        } catch (err) {
+            console.log(err)
+        }
+
+    }
+    return (<div> {(user === name) && <><span className="pointer" onClick={() => upvote()}>👍</span><span className="upvote">  {like} </span> </>} </div>)
+}
 function Message(props) {
-    const { message, user, name, _id, column } = props;
-    return <span className="message" key={_id}><p className={"chat bg-" + column} > {message}{(user === name) && <DeleteMessage id={_id} />}  </p></span>
+    const { message, user, name, _id, column, like } = props;
+    console.log(like)
+    return <span className="message" key={_id}><p className={"chat bg-" + column} > {message}{(user === name) && <DeleteMessage id={_id} />} </p> <Like id={_id} like={like} name={name} /></span>
 }
 
 function Messages(props) {
 
     return (<div className="chat-container">
-        {props.messages.sort((a, b) => b._id - a._id).map(({ _id, name, message, column }) => {
+        {props.messages.sort((a, b) => b._id - a._id).map(({ _id, name, message, column, like }) => {
             if (column.toLowerCase() === props.theColumn.toLowerCase()) {
-                return <Message {...props} name={name} _id={_id} message={message} key={_id} column={column} />
+                return <Message {...props} name={name} _id={_id} message={message} key={_id} column={column} like={like} />
             }
         })}
     </div>
@@ -45,19 +65,25 @@ export default function Column({ column }) {
 
     const submitForm = () => {
         event.preventDefault();
-        
+
         if (message.length > 1) {
-            sendMessage({
-                variables: {
-                    theUser: user,
-                    theMessage: message,
-                    theColumn: column
-                }
-            })
-            setMessage('')
+            try {
+                sendMessage({
+                    variables: {
+                        theUser: user,
+                        theMessage: message,
+                        theColumn: column,
+                        theLike: 0
+                    }
+                })
+                setMessage('')
+            } catch (err) {
+                console.log(err)
+            }
+
         }
 
-        
+
 
     }
 
@@ -67,8 +93,8 @@ export default function Column({ column }) {
                 track.stop();
 
             });
-        
-        
+
+
         submitForm();
         window.location.reload();
         setListening(false);
@@ -100,7 +126,7 @@ export default function Column({ column }) {
                     }
 
                 };
-                
+
 
             })
         }
@@ -117,8 +143,8 @@ export default function Column({ column }) {
                     <textarea value={message} ref={inputText} onChange={(e) => setMessage(e.target.value)} placeholder="Enter a comment" />
 
                     <div className="listeningContainer">
-                    {!listening ? <span onClick={initiate} className="listen">🎤 LISTEN</span> : 
-                    <span className="active" onClick={stopListening}>To submit, say: <span className="sayThis">Send comment</span>. <br /> Click or say: <span className="sayThis">Stop Listening</span> to end</span>}
+                        {!listening ? <span onClick={initiate} className="listen">🎤 LISTEN</span> :
+                            <span className="active" onClick={stopListening}>To submit, say: <span className="sayThis">Send comment</span>. <br /> Click or say: <span className="sayThis">Stop Listening</span> to end</span>}
                     </div>
                 </label>
 

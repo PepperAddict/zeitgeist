@@ -3,6 +3,7 @@ const {
   GraphQLID,
   GraphQLNonNull,
   GraphQLString,
+  GraphQLInt
 } = require("graphql");
 
 const MessageType = new GraphQLObjectType({
@@ -14,6 +15,7 @@ const MessageType = new GraphQLObjectType({
       date: { type: GraphQLNonNull(GraphQLString) },
       message: { type: GraphQLNonNull(GraphQLString) },
       column: { type: GraphQLNonNull(GraphQLString) },
+      like: {type: GraphQLNonNull(GraphQLInt)}
     };
   },
 });

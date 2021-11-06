@@ -9,6 +9,7 @@ const getAllMessages = require('./schema_two/getAllMessages')
 const newMessages = require('./schema_two/newMessages')
 const removeMessage = require('./schema_two/removeMessage')
 const removeAll = require('./schema_two/removeAll')
+const upvote = require('./schema_two/upvote')
 
 const RootQueryType = new GraphQLObjectType({
     name: 'RootQuery',
@@ -16,7 +17,7 @@ const RootQueryType = new GraphQLObjectType({
 })
 const RootMutationType = new GraphQLObjectType({
     name: 'RootMutation',
-    fields: () => ({postMessage, removeMessage, removeAll}) 
+    fields: () => ({postMessage, removeMessage, removeAll, upvote}) 
 })
 const RootSubscriptionType = new GraphQLObjectType({
     name: 'RootSubscription',
