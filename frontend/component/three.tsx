@@ -12,12 +12,14 @@ export default function Bubbles() {
 
     extend({ EffectComposer, RenderPass, UnrealBloomPass })
 
-    function Sphere({ geometry, x, y, z, s, color }) {
+    function Sphere({ geometry, x, y, z, s, color, int }) {
         const ref = useRef()
         useFrame((state) => {
-            ref.current.position.x = x - (state.clock.getElapsedTime() * 0.3) 
-            ref.current.position.y = y - (state.clock.getElapsedTime() * 1)  + state.mouse.y
-            ref.current.position.z = z - Math.sin((state.clock.getElapsedTime() * 3) )
+            ref.current.position.x = x - (state.clock.getElapsedTime() * int) 
+            ref.current.position.y = y - state.clock.getElapsedTime() * int
+            ref.current.position.z = z - Math.sin((state.clock.getElapsedTime() + int) )
+            ref.current.position.x = x + (state.clock.getElapsedTime() * int)
+
         })
         return (
             <mesh ref={ref} position={[x, y, z]} scale={[s, s, s]} geometry={geometry}>
@@ -36,7 +38,7 @@ export default function Bubbles() {
                 s: Math.random() + 5,
             }))
         }, [])
-        return data.map((props, i) => <Sphere key={i} {...props} geometry={geometry} color={color} />)
+        return data.map((props, i) => <Sphere key={i} {...props} geometry={geometry} color={color} int={Math.floor(Math.random() * 5)} />)
     }
 
     function Main({ children }) {

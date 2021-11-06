@@ -36,9 +36,32 @@ function Like({ id, like, name }) {
     return (<div> {(user === name) && <><span className="pointer" onClick={() => upvote()}>👍</span><span className="upvote">  {like} </span> </>} </div>)
 }
 function Message(props) {
+    const [position, setPosition] = useState({ x: 0, y: 0 });
+    const ref = useRef();
+    const [pressed, setPressed] = useState(false);
     const { message, user, name, _id, column, like } = props;
-    console.log(like)
-    return <span className="message" key={_id}><p className={"chat bg-" + column} > {message}{(user === name) && <DeleteMessage id={_id} />} </p> <Like id={_id} like={like} name={name} /></span>
+
+    useEffect(() => {
+        if (ref.current) {
+            ref.current.style.transform = `translate(${position.x}px, ${position.y}px)`
+        }
+    }, [position])
+
+    const onMouseMove = (e) => {
+        if (pressed) {
+            setPosition({
+                x: position.x + e.movementX,
+                y: position.y + e.movementY
+            })
+        }
+    }
+    return <span
+        ref={ref}
+        onMouseMove={onMouseMove}
+        onMouseDown={() => setPressed(true)}
+        onMouseUp={() => setPressed(false)}
+        onMouseLeave={() => setPressed(false)}
+        className="message" key={_id}><p className={"chat pointer bg-" + column} > {message}{(user === name) && <DeleteMessage id={_id} />} </p> <Like id={_id} like={like} name={name} /></span>
 }
 
 function Messages(props) {
