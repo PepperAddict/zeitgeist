@@ -106,8 +106,6 @@ export default function Column({ column }) {
         }
 
 
-
-
     }
 
 

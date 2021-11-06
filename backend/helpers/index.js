@@ -25,8 +25,6 @@ const neDBCount = () => {
 
 //This is for adding data into database.db
 const neDBAdd = async (data) => {
-  const count = await neDBCount(database);
-  console.log(count);
 
   return new Promise((resolve, reject) => {
     database.insert({ ...data, _id: Date.now() }, (err, newDoc) => {

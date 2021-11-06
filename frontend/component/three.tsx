@@ -15,8 +15,8 @@ export default function Bubbles() {
     function Sphere({ geometry, x, y, z, s, color }) {
         const ref = useRef()
         useFrame((state) => {
-            ref.current.position.x = x - Math.sin((state.clock.getElapsedTime() * 2) ) + state.mouse.x 
-            ref.current.position.y = y - Math.sin((state.clock.getElapsedTime() * 5) ) + state.mouse.y
+            ref.current.position.x = x - (state.clock.getElapsedTime() * 0.3) 
+            ref.current.position.y = y - (state.clock.getElapsedTime() * 1)  + state.mouse.y
             ref.current.position.z = z - Math.sin((state.clock.getElapsedTime() * 3) )
         })
         return (
