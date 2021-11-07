@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom'
 import { REMOVE_All } from '../helpers/graphql';
 import { useMutation } from '@apollo/client';
 import logo from '../../public/images/logo.png';
-
+import Action from './Action';
 import { setName, setMode } from '../redux/states.js';
 import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 
@@ -27,6 +27,7 @@ export default function Room() {
     return <div className="main-container">
         <img src={logo} alt="logo" className="logo-room" />
         <Columns />
+        <Action />
         <span className="clear" onClick={() => clearAll()}>clear everything</span>
     </div>
 }

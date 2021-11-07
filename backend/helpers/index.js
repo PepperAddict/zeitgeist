@@ -41,7 +41,6 @@ const neDBUpdate = async ({id, like}) => {
   return new Promise((resolve, reject) => {
     database.update({ _id: idInt}, {$set: {like}}, {}, (err, number) => {
       if (err) reject(err);
-      console.log(number);
       resolve(number);
     });
   }).catch((err) => new Error("add went wrong" + err));

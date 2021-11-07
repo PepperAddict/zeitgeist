@@ -18,7 +18,20 @@ export const theUser = createSlice({
     }
 })
 
-
+export const theText = createSlice({
+    name: 'text', 
+    initialState: {
+        value: ''
+    },
+    reducers: {
+        setText: (state, data) => {
+            return {
+                ...state, 
+                value: data.payload
+            }
+        }
+    }
+})
 
 export const theMode = createSlice({
     name: 'mode', 
@@ -38,3 +51,4 @@ export const theMode = createSlice({
 
 export const {setName} = theUser.actions 
 export const {setMode} = theMode.actions
+export const {setText} = theText.actions

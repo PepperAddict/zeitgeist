@@ -38,7 +38,6 @@ const App = () => {
     <Provider store={store}>
       <ApolloProvider client={client}>
         <BG />
-
         <Router>
 
           <Route exact path="/">
@@ -50,6 +49,7 @@ const App = () => {
           </Route>
 
         </Router>
+        
       </ApolloProvider>
     </Provider>
   )

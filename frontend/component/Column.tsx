@@ -1,12 +1,13 @@
 import { useMutation, useSubscription } from '@apollo/client';
 import React, { useState, useRef, useEffect } from 'react';
 import { POST_MESSAGE, WATCH_MESSAGE, REMOVE_MESSAGE, UPVOTE } from '../helpers/graphql';
-import { RootStateOrAny, useSelector } from 'react-redux';
+import { RootStateOrAny, useSelector, useDispatch } from 'react-redux';
 import '../styles/columns.styl';
 const sdk = require('microsoft-cognitiveservices-speech-sdk');
 const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.SPEECH_KEY, "eastus")
 let audioConfig = sdk.AudioConfig.fromDefaultMicrophoneInput()
 let recognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig)
+import { setText } from '../redux/states.js';
 //This is for deleting a message if it belongs to the user
 function DeleteMessage({ id }) {
     const [removeMessage] = useMutation(REMOVE_MESSAGE)
@@ -40,6 +41,8 @@ function Message(props) {
     const ref = useRef();
     const [pressed, setPressed] = useState(false);
     const { message, user, name, _id, column, like } = props;
+    const text = useSelector((state: RootStateOrAny) => state.text.value);
+    const dispatch = useDispatch();
 
     useEffect(() => {
         if (ref.current) {
@@ -55,12 +58,17 @@ function Message(props) {
             })
         }
     }
+    const selected = () => {
+        setPressed(true);
+        dispatch(setText(message));
+    }
     return <span
         ref={ref}
-        onMouseMove={onMouseMove}
-        onMouseDown={() => setPressed(true)}
+        // onMouseMove={onMouseMove}
+        onMouseDown={() => selected()}
         onMouseUp={() => setPressed(false)}
         onMouseLeave={() => setPressed(false)}
+        draggable={(true)}
         className="message" key={_id}><p className={"chat pointer bg-" + column} > {message}{(user === name) && <DeleteMessage id={_id} />} </p> <Like id={_id} like={like} name={name} /></span>
 }
 
