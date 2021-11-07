@@ -47,3 +47,9 @@ mutation ($id: ID!,$like: Int) {
   upvote(id: $id,like: $like)
 }
 `
+
+export const CHANGE = gql`
+mutation ($id: ID!,$column: String!) {
+  changeColumn(id: $id,column: $column)
+}
+`

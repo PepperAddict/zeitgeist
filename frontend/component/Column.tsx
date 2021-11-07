@@ -60,7 +60,7 @@ function Message(props) {
     }
     const selected = () => {
         setPressed(true);
-        dispatch(setText(message));
+        dispatch(setText(_id));
     }
     return <span
         ref={ref}
@@ -84,7 +84,7 @@ function Messages(props) {
     )
 }
 
-export default function Column({ column }) {
+export default function Column({ column, action = false }) {
     const user = useSelector((state: RootStateOrAny) => state.user.value);
     let [message, setMessage] = useState('')
     const inputText = useRef();
@@ -158,7 +158,6 @@ export default function Column({ column }) {
 
                 };
 
-
             })
         }
 
@@ -169,7 +168,7 @@ export default function Column({ column }) {
 
     return (
         <div className={"column-container col-" + column}>
-            <form onSubmit={(e) => submitForm()}>
+            {!action && <form onSubmit={(e) => submitForm()}>
                 <label>
                     <textarea value={message} ref={inputText} onChange={(e) => setMessage(e.target.value)} placeholder="Enter a comment" />
 
@@ -181,7 +180,8 @@ export default function Column({ column }) {
 
 
                 <button type="submit">Add</button>
-            </form>
+            </form>}
+
             {data && <Messages messages={data.newMessages} user={user} theColumn={column} />}
         </div>
     )
