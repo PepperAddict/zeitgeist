@@ -57,7 +57,7 @@ app.get("/api/jira", async (req, res) => {
       },
       body: `{"grant_type": "authorization_code",
       "client_id": "gWyH77E9dl4mCklEVWjXuX67WJuZmVeA",
-      "client_secret": "IlWGiQrdiNl39MNlTzYBoTBZtRp3vk4phd4L-5_AiwS74dYmmDbs__VB7m0z6HdH",
+      "client_secret": "${process.env.JIRASECRET}",
       "code": "${code}",
       "redirect_uri": "http://localhost:8080"}`
     })
@@ -67,7 +67,6 @@ app.get("/api/jira", async (req, res) => {
           res.cookie('code', data['access_token']);
           res.redirect('/')
     }
-
 
   }
 
