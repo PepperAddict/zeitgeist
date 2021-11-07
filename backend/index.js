@@ -1,3 +1,5 @@
+
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -6,6 +8,7 @@ const {execute, subscribe} = require('graphql')
 const  { SubscriptionServer } = require('subscriptions-transport-ws');
 const {ApolloServer} = require('apollo-server-express');
 const fetch = require('node-fetch')
+
 
 //two schemas to choose from but achieve the same purpose. schema is SDL and gqlSchema is GraphQL Object Type.
 const { gqlSchema} = require('./middleware/graphql');
@@ -63,6 +66,7 @@ app.get("/api/jira", async (req, res) => {
     })
 
     const data = await response.json();
+    console.log(data)
     if (data) {
           res.cookie('code', data['access_token']);
           res.redirect('/')

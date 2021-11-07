@@ -6,3 +6,43 @@
     display: flex;
     grid-gap: 10px;
     font-size: 14px;
+
+.dragHere
+    background: #fa9f00;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    span 
+        display: block;
+        font-size: 12px;
+
+.jiraTrigger
+    cursor: pointer;
+    display: inline-flex;
+    border: 1px solid #ccc;
+    background: white;
+    padding: 10px;
+    border-radius: 15px;
+    grid-gap: 10px;
+    font-family: Arial, Helvetica, sans-serif
+.jiraNonTrigger
+    @extend .jiraTrigger;
+    cursor: default;
+
+.modalStyle
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    margin-right: -50%;
+    transform: translate(-50%, -50%)
+    position: fixed;
+    background: white;
+    max-width: 800px;
+    width: 100%;
+    padding: 15px;
+    .close 
+        position: absolute;
+        top: 0px;
+        right: 10px;
+        cursor: pointer;

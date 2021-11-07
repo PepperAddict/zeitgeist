@@ -8,13 +8,14 @@ const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.SPEECH_KEY, "
 let audioConfig = sdk.AudioConfig.fromDefaultMicrophoneInput()
 let recognizer = new sdk.SpeechRecognizer(speechConfig, audioConfig)
 import { setText } from '../redux/states.js';
+import CreateTicket from './CreateTicket';
 //This is for deleting a message if it belongs to the user
 function DeleteMessage({ id }) {
     const [removeMessage] = useMutation(REMOVE_MESSAGE)
     const initiateRemoval = () => {
         removeMessage({ variables: { id } })
     }
-    return <span onClick={() => initiateRemoval()}>✖</span>
+    return <span className="delete" onClick={() => initiateRemoval()}>✖</span>
 }
 
 function Like({ id, like, name }) {
@@ -34,7 +35,7 @@ function Like({ id, like, name }) {
         }
 
     }
-    return (<div> {(user === name) && <><span className="pointer" onClick={() => upvote()}>👍</span><span className="upvote">  {like} </span> </>} </div>)
+    return (<div> {(user !== name) && <span className="pointer" onClick={() => upvote()}>👍</span>} <span className="upvote">  {like} </span> </div>)
 }
 function Message(props) {
     const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -62,14 +63,24 @@ function Message(props) {
         setPressed(true);
         dispatch(setText(_id));
     }
+
     return <span
         ref={ref}
-        // onMouseMove={onMouseMove}
+        onMouseMove={column === "ACTION" ?  onMouseMove : null}
         onMouseDown={() => selected()}
         onMouseUp={() => setPressed(false)}
         onMouseLeave={() => setPressed(false)}
-        draggable={(true)}
-        className="message" key={_id}><p className={"chat pointer bg-" + column} > {message}{(user === name) && <DeleteMessage id={_id} />} </p> <Like id={_id} like={like} name={name} /></span>
+        draggable={ column !== "ACTION" ? true : false}
+        className="message" 
+        key={_id}>
+            <p className={"chat pointer bg-" + column} > 
+            {message}  
+            {column === "ACTION" && <CreateTicket {...props} />} 
+            {(user === name || column === "ACTION") && <DeleteMessage id={_id} />} 
+            </p> <Like id={_id} like={like} name={name} />
+        
+        
+        </span>
 }
 
 function Messages(props) {
@@ -80,6 +91,7 @@ function Messages(props) {
                 return <Message {...props} name={name} _id={_id} message={message} key={_id} column={column} like={like} />
             }
         })}
+
     </div>
     )
 }
