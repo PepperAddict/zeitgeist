@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 import { setName } from '../redux/states.js';
 import '../styles/app.styl'
-import logo from '../../public/images/logo.png';
+import logo from '../../public/images/zeitgeist.svg';
 
 export default function Welcome() {
     const [name, inputName] = useState(null);
